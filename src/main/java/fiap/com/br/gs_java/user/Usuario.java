@@ -11,7 +11,7 @@ import java.util.Date;
 @Cacheable
 @NoArgsConstructor
 @Table(name = "T_SOSE_Usuario")
-public class User {
+public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
