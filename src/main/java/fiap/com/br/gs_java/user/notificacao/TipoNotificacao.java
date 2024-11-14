@@ -1,4 +1,4 @@
-package fiap.com.br.gs_java.user.notification;
+package fiap.com.br.gs_java.user.notificacao;
 
 import jakarta.persistence.*;
 import lombok.Data;
