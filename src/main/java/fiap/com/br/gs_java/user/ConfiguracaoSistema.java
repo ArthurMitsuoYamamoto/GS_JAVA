@@ -19,6 +19,7 @@ public class ConfiguracaoSistema {
     @OneToOne
     @JoinColumn(name = "idUsuario", referencedColumnName = "id", nullable = false)
     private Usuario usuario;
+
     @Column(name = "LimiteEficiencia", nullable = false)
     private Integer limiteEficiencia;
 
