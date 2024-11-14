@@ -1,6 +1,7 @@
 package fiap.com.br.gs_java.user;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -19,12 +20,17 @@ public class ConfiguracaoSistema {
     @JoinColumn(name = "idUsuario", referencedColumnName = "id", nullable = false)
     private Usuario usuario;
 
-    @Column(name = "LimiteConsistencia", nullable = false)
+    @NotNull(message = "{limiteEficiencia.notNull}")
+    @Min(value = 0, message = "{limiteEficiencia.min}")
+    @Column(name = "LimiteEficiencia", nullable = false)
     private Integer limiteConsistencia;
 
+
+    @Min(value = 1, message = "{frequenciaAtualizacao.min}")
     @Column(name = "FrequenciaAtualizacao", nullable = false)
     private Integer frequenciaAtualizacao;
 
+    @NotNull(message = "{avisosAtivados.notNull}")
     @Column(name = "AvisosAtivados", nullable = false)
     private Boolean avisosAtivados;
 }

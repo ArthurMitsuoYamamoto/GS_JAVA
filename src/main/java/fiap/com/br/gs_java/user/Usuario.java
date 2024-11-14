@@ -13,7 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 @Table(name = "T_SOSE_Usuario")
 public class Usuario {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -40,7 +39,5 @@ public class Usuario {
             inverseJoinColumns = @JoinColumn(name = "idTipoUsuario")
     )
     private List<TipoUsuario> UsersType;
-
-    @OneToMany(mappedBy = "usuario")
-    private List<Notificacao> notificacoes;
 }
+
