@@ -19,18 +19,12 @@ public class ConfiguracaoSistema {
     @OneToOne
     @JoinColumn(name = "idUsuario", referencedColumnName = "id", nullable = false)
     private Usuario usuario;
-
-    @NotNull(message = "{limiteEficiencia.notNull}")
-    @Min(value = 0, message = "{limiteEficiencia.min}")
     @Column(name = "LimiteEficiencia", nullable = false)
-    private Integer limiteConsistencia;
+    private Integer limiteEficiencia;
 
 
-    @Min(value = 1, message = "{frequenciaAtualizacao.min}")
+
     @Column(name = "FrequenciaAtualizacao", nullable = false)
     private Integer frequenciaAtualizacao;
 
-    @NotNull(message = "{avisosAtivados.notNull}")
-    @Column(name = "AvisosAtivados", nullable = false)
-    private Boolean avisosAtivados;
 }
