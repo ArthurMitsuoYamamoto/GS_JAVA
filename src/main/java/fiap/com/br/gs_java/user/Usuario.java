@@ -38,6 +38,6 @@ public class Usuario {
             joinColumns = @JoinColumn(name = "idUsuario"),
             inverseJoinColumns = @JoinColumn(name = "idTipoUsuario")
     )
-    private List<TipoUsuario> UsersType;
+    private List<TipoUsuario> tipoUsuario;
 }
 
