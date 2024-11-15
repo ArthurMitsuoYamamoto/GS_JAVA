@@ -10,8 +10,8 @@
     </parent>
     <groupId>fiap.com.br</groupId>
     <artifactId>GS_JAVA</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>GS_JAVA</name>
+    <version>1.0</version>
+    <name>GS_JAVA_SOLAR_SENSE</name>
     <description>GS_JAVA</description>
     <url/>
     <licenses>
