@@ -1,14 +1,16 @@
 package fiap.com.br.gs_java.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static org.springframework.http.HttpStatus.*;
+
+
 @RestController
-@RequestMapping("/api/usuarios")
+@RequestMapping("/SolarSense/usuarios")
 public class UsuarioController {
 
     @Autowired
@@ -25,14 +27,14 @@ public class UsuarioController {
     public ResponseEntity<Usuario> getUsuarioById(@PathVariable Long id) {
         return usuarioService.findById(id)
                 .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+                .orElse(ResponseEntity.status(NOT_FOUND).build());
     }
 
     // Criar novo usuário
     @PostMapping
     public ResponseEntity<Usuario> createUsuario(@RequestBody Usuario usuario) {
         Usuario novoUsuario = usuarioService.save(usuario);
-        return ResponseEntity.status(HttpStatus.CREATED).body(novoUsuario);
+        return ResponseEntity.status(CREATED).body(novoUsuario);
     }
 
     // Atualizar usuário por ID
@@ -42,7 +44,7 @@ public class UsuarioController {
             Usuario usuarioAtualizado = usuarioService.update(id, usuarioDetails);
             return ResponseEntity.ok(usuarioAtualizado);
         } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(NOT_FOUND).build();
         }
     }
 
@@ -50,6 +52,6 @@ public class UsuarioController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUsuario(@PathVariable Long id) {
         usuarioService.deleteById(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.status(NO_CONTENT).build();
     }
 }
