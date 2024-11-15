@@ -1,7 +1,9 @@
 package fiap.com.br.gs_java.user;
 
 import fiap.com.br.gs_java.painel.PainelSolar;
+import fiap.com.br.gs_java.user.tipo.TipoUsuario;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -22,6 +24,7 @@ public class Usuario {
     private String nome;
 
     @Column(nullable = false, length = 100)
+    @Email
     private String email;
 
     @Column(nullable = false)
