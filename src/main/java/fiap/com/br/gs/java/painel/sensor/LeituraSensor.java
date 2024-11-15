@@ -1,4 +1,4 @@
-package fiap.com.br.gs_java.painel.sensor;
+package fiap.com.br.gs.java.painel.sensor;
 
 import jakarta.persistence.*;
 import lombok.Data;

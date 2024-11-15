@@ -1,6 +1,6 @@
-package fiap.com.br.gs_java.user.sistemaconfig;
+package fiap.com.br.gs.java.user.sistemaconfig;
 
-import fiap.com.br.gs_java.user.Usuario;
+import fiap.com.br.gs.java.user.Usuario;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;

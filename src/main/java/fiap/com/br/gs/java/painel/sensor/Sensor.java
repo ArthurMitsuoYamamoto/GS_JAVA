@@ -1,6 +1,6 @@
-package fiap.com.br.gs_java.painel.sensor;
+package fiap.com.br.gs.java.painel.sensor;
 
-import fiap.com.br.gs_java.painel.PainelSolar;
+import fiap.com.br.gs.java.painel.PainelSolar;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;

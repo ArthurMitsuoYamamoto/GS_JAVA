@@ -1,4 +1,4 @@
-package fiap.com.br.gs_java.user;
+package fiap.com.br.gs.java.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

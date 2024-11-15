@@ -1,8 +1,9 @@
-package fiap.com.br.gs_java.user.tipo;
+package fiap.com.br.gs.java.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface TipoUsuarioRepository extends JpaRepository<TipoUsuario, Long> {
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+
 }

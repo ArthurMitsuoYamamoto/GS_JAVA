@@ -1,7 +1,7 @@
-package fiap.com.br.gs_java.user;
+package fiap.com.br.gs.java.user;
 
-import fiap.com.br.gs_java.painel.PainelSolar;
-import fiap.com.br.gs_java.user.tipo.TipoUsuario;
+import fiap.com.br.gs.java.painel.PainelSolar;
+import fiap.com.br.gs.java.user.tipo.TipoUsuario;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.Data;

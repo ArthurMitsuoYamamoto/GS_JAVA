@@ -1,4 +1,4 @@
-package fiap.com.br.gs_java;
+package fiap.com.br.gs.java;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
