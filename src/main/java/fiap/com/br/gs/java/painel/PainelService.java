@@ -1,4 +1,4 @@
-package fiap.com.br.gs_java.painel;
+package fiap.com.br.gs.java.painel;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -6,25 +6,25 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class PainelSolarService {
+public class PainelService {
 
     @Autowired
-    private PainelSolarRepository painelSolarRepository;
+    private PainelRepository painelRepository;
 
     public List<PainelSolar> findAll() {
-        return painelSolarRepository.findAll();
+        return painelRepository.findAll();
     }
 
     public Optional<PainelSolar> findById(Long id) {
-        return painelSolarRepository.findById(id);
+        return painelRepository.findById(id);
     }
 
     public PainelSolar save(PainelSolar painelSolar) {
-        return painelSolarRepository.save(painelSolar);
+        return painelRepository.save(painelSolar);
     }
 
     public PainelSolar update(Long id, PainelSolar painelDetails) {
-        PainelSolar painelSolar = painelSolarRepository.findById(id)
+        PainelSolar painelSolar = painelRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Painel Solar não encontrado com ID: " + id));
 
         painelSolar.setNome(painelDetails.getNome());
@@ -32,10 +32,10 @@ public class PainelSolarService {
         painelSolar.setStatus(painelDetails.getStatus());
         painelSolar.setCapacidadeProducao(painelDetails.getCapacidadeProducao());
 
-        return painelSolarRepository.save(painelSolar);
+        return painelRepository.save(painelSolar);
     }
 
     public void deleteById(Long id) {
-        painelSolarRepository.deleteById(id);
+        painelRepository.deleteById(id);
     }
 }

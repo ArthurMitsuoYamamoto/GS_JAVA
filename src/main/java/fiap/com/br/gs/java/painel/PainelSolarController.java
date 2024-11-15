@@ -1,18 +1,18 @@
-package fiap.com.br.gs_java.painel;
+package fiap.com.br.gs.java.painel;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import static org.springframework.http.HttpStatus.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/paineis")
+@RequestMapping("/SolarSense/paineis")
 public class PainelSolarController {
 
     @Autowired
-    private PainelSolarService painelSolarService;
+    private PainelService painelSolarService;
 
     // Listar todos os painéis solares
     @GetMapping
@@ -25,14 +25,14 @@ public class PainelSolarController {
     public ResponseEntity<PainelSolar> getPainelById(@PathVariable Long id) {
         return painelSolarService.findById(id)
                 .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+                .orElse(ResponseEntity.status(NOT_FOUND).build());
     }
 
     // Criar novo painel solar
     @PostMapping
     public ResponseEntity<PainelSolar> createPainel(@RequestBody PainelSolar painelSolar) {
         PainelSolar novoPainel = painelSolarService.save(painelSolar);
-        return ResponseEntity.status(HttpStatus.CREATED).body(novoPainel);
+        return ResponseEntity.status(CREATED).body(novoPainel);
     }
 
     // Atualizar painel solar por ID
@@ -42,7 +42,7 @@ public class PainelSolarController {
             PainelSolar painelAtualizado = painelSolarService.update(id, painelDetails);
             return ResponseEntity.ok(painelAtualizado);
         } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(NOT_FOUND).build();
         }
     }
 
@@ -50,6 +50,6 @@ public class PainelSolarController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePainel(@PathVariable Long id) {
         painelSolarService.deleteById(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.status(NO_CONTENT).build();
     }
 }

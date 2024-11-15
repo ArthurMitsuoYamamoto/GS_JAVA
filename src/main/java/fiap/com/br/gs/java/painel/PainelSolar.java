@@ -11,6 +11,7 @@ import java.util.List;
 
 @Entity
 @Data
+@Cacheable
 @NoArgsConstructor
 @Table(name = "T_SOSE_PainelSolar")
 public class PainelSolar {

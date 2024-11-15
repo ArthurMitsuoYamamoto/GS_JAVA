@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@Cacheable
 @NoArgsConstructor
 @Table(name = "T_SOSE_RelatorioDesempenho")
 public class RelatorioDesempenho {

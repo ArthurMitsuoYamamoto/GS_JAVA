@@ -4,8 +4,9 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name = "T_SOSE_TipoNotificacao")
 @Data
+@Cacheable
+@Table(name = "T_SOSE_TipoNotificacao")
 public class TipoNotificacao {
 
     @Id

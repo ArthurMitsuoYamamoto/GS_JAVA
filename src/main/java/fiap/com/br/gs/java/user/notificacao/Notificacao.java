@@ -7,8 +7,9 @@ import lombok.Data;
 import java.util.Date;
 
 @Entity
-@Table(name = "T_SOSE_Notificacao")
 @Data
+@Cacheable
+@Table(name = "T_SOSE_Notificacao")
 public class Notificacao {
 
     @Id

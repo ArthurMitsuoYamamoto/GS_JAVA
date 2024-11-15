@@ -8,6 +8,7 @@ import java.util.Date;
 
 @Entity
 @Data
+@Cacheable
 @NoArgsConstructor
 @Table(name = "T_SOSE_EficienciaPainel")
 public class EficienciaPainel {
