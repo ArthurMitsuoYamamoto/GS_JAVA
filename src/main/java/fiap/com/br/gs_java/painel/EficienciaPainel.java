@@ -16,13 +16,15 @@ public class EficienciaPainel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "idPainelSolar", nullable = false)
+    private PainelSolar painelSolar;
+
     @Column(nullable = false, precision = 5, scale = 2)
     private Double eficiencia;
 
     @Column(nullable = false)
     private Date dataCalculo;
 
-    @ManyToOne
-    @JoinColumn(name = "idPainelSolar", nullable = false)
-    private PainelSolar painelSolar;
+
 }

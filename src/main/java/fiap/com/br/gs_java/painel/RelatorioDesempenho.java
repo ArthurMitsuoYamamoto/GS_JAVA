@@ -14,6 +14,10 @@ public class RelatorioDesempenho {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "idPainelSolar", nullable = false)
+    private PainelSolar painelSolar;
+
     @Column(nullable = false, precision = 5, scale = 2)
     private Double eficienciaMedia;
 
@@ -23,7 +27,5 @@ public class RelatorioDesempenho {
     @Column(length = 250)
     private String analiseProblemas;
 
-    @ManyToOne
-    @JoinColumn(name = "idPainelSolar", nullable = false)
-    private PainelSolar painelSolar;
+
 }
