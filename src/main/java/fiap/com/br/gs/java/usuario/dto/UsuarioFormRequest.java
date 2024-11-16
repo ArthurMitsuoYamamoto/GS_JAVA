@@ -7,8 +7,8 @@ import java.time.LocalDateTime;
 public record UsuarioFormRequest(
         String nome,
         String email,
-        String senha,
-        char status
+        String senha
+
 
 ) {
     public Usuario toModel(){
@@ -17,7 +17,6 @@ public record UsuarioFormRequest(
                 .email(email)
                 .senha(senha)
                 .dataCadastro(LocalDateTime.now())
-                .status(status)
                 .build();
 
 

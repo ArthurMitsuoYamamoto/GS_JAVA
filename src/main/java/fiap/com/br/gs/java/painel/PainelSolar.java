@@ -4,6 +4,8 @@ package fiap.com.br.gs.java.painel;
 import fiap.com.br.gs.java.painel.sensor.Sensor;
 import fiap.com.br.gs.java.usuario.Usuario;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,8 +13,10 @@ import java.util.List;
 
 @Entity
 @Data
+@Builder
 @Cacheable
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "T_SOSE_PainelSolar")
 public class PainelSolar {
 
