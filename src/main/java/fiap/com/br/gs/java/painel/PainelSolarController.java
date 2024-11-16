@@ -26,7 +26,7 @@ import java.util.List;
 public class PainelSolarController {
 
     @Autowired
-    private PainelRepository repository;
+    private PainelService painelService;
 
 
     @GetMapping
@@ -44,7 +44,7 @@ public class PainelSolarController {
             }
     )
     public List<PainelSolar> getAllPaineis() {
-        return repository.findAll();
+        return painelService.findAll();
 
     }
 
@@ -64,7 +64,7 @@ public class PainelSolarController {
     public ResponseEntity<PainelSolar> show(@PathVariable Long id) {
         log.info("buscando painel solar o com id {}", id);
 
-        return repository
+        return painelService
                 .findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.status(NOT_FOUND).build());
@@ -88,7 +88,7 @@ public class PainelSolarController {
 
     public PainelSolar createPainel(@RequestBody @Valid PainelSolar painelSolar) {
         log.info("Cadastrando painel solar {}", painelSolar);
-        return repository.save(painelSolar);
+        return painelService.save(painelSolar);
     }
 
 
@@ -111,11 +111,11 @@ public class PainelSolarController {
 
         verificarSePainelExiste(id);
         painelSolar.setId(id);
-        return repository.save(painelSolar);
+        return painelService.update(id, painelSolar);
     }
 
     private void  verificarSePainelExiste(Long id) {
-        repository
+        painelService
                 .findById(id)
                 .orElseThrow(() -> new ResponseStatusException(
                         NOT_FOUND,
@@ -142,6 +142,6 @@ public class PainelSolarController {
     public void deletePainel(@PathVariable Long id) {
         log.info("apagando painel {}", id);
         verificarSePainelExiste(id);
-        repository.deleteById(id);
+        painelService.deleteById(id);
     }
 }

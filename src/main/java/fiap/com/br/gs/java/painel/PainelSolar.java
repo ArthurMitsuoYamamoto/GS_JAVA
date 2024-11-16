@@ -45,7 +45,6 @@ public class PainelSolar {
 
     @Column(nullable = false)
     @NotNull(message = "{painelSolar.capacidadeProducao.notNull}")
-    @Positive(message = "{painelSolar.capacidadeProducao.positive}")
     private Double capacidadeProducao;
 
     @OneToMany(mappedBy = "painelSolar")
