@@ -1,4 +1,4 @@
-package fiap.com.br.gs.java.user;
+package fiap.com.br.gs.java.usuario;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -27,9 +27,26 @@ public class UsuarioController {
                     @ApiResponse(responseCode = "200", description = "Lista de usuários retornada com sucesso.")
             }
     )
-    public List<Usuario> getAllUsuarios() {
+    public List<Usuario>  getAllUsuarios() {
         return usuarioService.findAll();
     }
+
+    @GetMapping
+    @Operation(
+            summary = "Listar todos os usuários ou filtrar por nome",
+            description = "Retorna uma lista de todos os usuários cadastrados no sistema ou filtra os usuários pelo nome, caso o parâmetro 'nome' seja fornecido.",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Lista de usuários retornada com sucesso."),
+                    @ApiResponse(responseCode = "400", description = "Erro nos parâmetros de entrada.")
+            }
+    )
+    public List<Usuario> findAll(@RequestParam(required = false) String nome) {
+        if (nome != null) {
+            return usuarioService.findByNome(nome);
+        }
+        return usuarioService.findAll();
+    }
+
 
     @GetMapping("/{id}")
     @Operation(

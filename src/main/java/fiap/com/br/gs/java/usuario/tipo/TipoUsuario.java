@@ -1,7 +1,7 @@
-package fiap.com.br.gs.java.user.tipo;
+package fiap.com.br.gs.java.usuario.tipo;
 
-import fiap.com.br.gs.java.user.Usuario;
-import fiap.com.br.gs.java.user.notificacao.Notificacao;
+import fiap.com.br.gs.java.usuario.Usuario;
+import fiap.com.br.gs.java.usuario.notificacao.Notificacao;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;

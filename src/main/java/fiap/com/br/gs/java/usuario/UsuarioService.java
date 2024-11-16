@@ -1,7 +1,8 @@
-package fiap.com.br.gs.java.user;
+package fiap.com.br.gs.java.usuario;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,6 +11,8 @@ public class UsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public List<Usuario> findAll() {
         return usuarioRepository.findAll();
@@ -20,6 +23,8 @@ public class UsuarioService {
     }
 
     public Usuario save(Usuario usuario) {
+        usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+
         return usuarioRepository.save(usuario);
     }
 
@@ -38,5 +43,9 @@ public class UsuarioService {
 
     public void deleteById(Long id) {
         usuarioRepository.deleteById(id);
+    }
+
+    public List<Usuario> findByNome(String nome) {
+        return usuarioRepository.findByNomeContainingIgnoreCase(nome);
     }
 }

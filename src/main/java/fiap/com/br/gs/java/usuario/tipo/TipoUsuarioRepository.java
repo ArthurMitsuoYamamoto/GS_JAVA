@@ -1,4 +1,4 @@
-package fiap.com.br.gs.java.user.tipo;
+package fiap.com.br.gs.java.usuario.tipo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

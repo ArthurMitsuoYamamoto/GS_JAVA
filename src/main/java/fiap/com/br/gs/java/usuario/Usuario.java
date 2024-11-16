@@ -1,19 +1,24 @@
-package fiap.com.br.gs.java.user;
+package fiap.com.br.gs.java.usuario;
 
 import fiap.com.br.gs.java.painel.PainelSolar;
-import fiap.com.br.gs.java.user.tipo.TipoUsuario;
+import fiap.com.br.gs.java.usuario.tipo.TipoUsuario;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.ArrayList;
 
 @Entity
 @Data
+@Builder
 @Cacheable
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "T_SOSE_Usuario")
 public class Usuario {
     @Id
@@ -31,13 +36,13 @@ public class Usuario {
     private String senha;
 
     @Column(name = "DataCadastro")
-    private Date dataCadastro;
+    private LocalDateTime dataCadastro;
 
     @Column(nullable = false)
     private char status;
 
     @OneToMany(mappedBy = "usuario")
-    private List<PainelSolar> paineis;
+    private List<PainelSolar> paineis = new ArrayList<>();  // Inicializado para evitar NullPointerException
 
     @ManyToMany
     @JoinTable(
@@ -45,6 +50,6 @@ public class Usuario {
             joinColumns = @JoinColumn(name = "idUsuario"),
             inverseJoinColumns = @JoinColumn(name = "idTipoUsuario")
     )
-    private List<TipoUsuario> tipoUsuario;
-}
+    private List<TipoUsuario> tipoUsuario = new ArrayList<>();  // Inicializado para evitar NullPointerException
 
+}

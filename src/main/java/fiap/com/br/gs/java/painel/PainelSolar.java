@@ -2,7 +2,7 @@ package fiap.com.br.gs.java.painel;
 
 
 import fiap.com.br.gs.java.painel.sensor.Sensor;
-import fiap.com.br.gs.java.user.Usuario;
+import fiap.com.br.gs.java.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;

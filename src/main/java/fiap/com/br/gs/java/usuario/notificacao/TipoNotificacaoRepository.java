@@ -1,4 +1,4 @@
-package fiap.com.br.gs.java.user.notificacao;
+package fiap.com.br.gs.java.usuario.notificacao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
