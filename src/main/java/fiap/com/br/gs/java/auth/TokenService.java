@@ -26,7 +26,7 @@ public class TokenService {
         var expiresAt = LocalDateTime.now().plusHours(1).toInstant(ZoneOffset.ofHours(-3));
         String token = JWT.create()
                 .withSubject(credentials.email())
-                .withIssuer("sphere")
+                .withIssuer("SolarSense")  // Certifique-se de que o issuer seja consistente
                 .withExpiresAt(expiresAt)
                 .withClaim("role", "ADMIN")
                 .sign(algorithm);
@@ -36,13 +36,13 @@ public class TokenService {
 
     public Usuario getUserFromToken(String token) {
         var email = JWT.require(algorithm)
-                .withIssuer("sphere")
+                .withIssuer("SolarSense")  // Consistência no issuer
                 .build()
                 .verify(token)
                 .getSubject();
 
         return usuarioRepository
                 .findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+                .orElseThrow(() -> new UsernameNotFoundException("Usuario não encontrado"));
     }
 }
