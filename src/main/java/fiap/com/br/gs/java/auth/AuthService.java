@@ -1,15 +1,11 @@
 package fiap.com.br.gs.java.auth;
 
-
 import fiap.com.br.gs.java.usuario.UsuarioRepository;
-
-import org.springframework.security.core.token.TokenService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AuthService {
-
 
     private final UsuarioRepository usuarioRepository;
     private final PasswordEncoder passwordEncoder;
@@ -21,15 +17,14 @@ public class AuthService {
         this.tokenService = tokenService;
     }
 
-    public Token login(Credentials credentials){
+    public Token login(Credentials credentials) {
         var user = usuarioRepository.findByEmail(credentials.email())
-                .orElseThrow( () -> new RuntimeException("Access Denied") );
+                .orElseThrow(() -> new RuntimeException("Access Denied"));
 
-        if ( !passwordEncoder.matches(credentials.senha(), user.getSenha()) )
+        if (!passwordEncoder.matches(credentials.senha(), user.getSenha())) {
             throw new RuntimeException("Access Denied");
+        }
 
-        return tokenService.createToken(credentials);
-
+        return tokenService.createToken(credentials); // Gera o token usando o TokenService
     }
-
 }
