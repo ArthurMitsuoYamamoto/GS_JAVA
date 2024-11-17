@@ -22,37 +22,37 @@ public class PainelSolar {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
     @ManyToOne
     @JoinColumn(name = "idUsuario", nullable = false)
     @NotNull(message = "{painelSolar.usuario.notNull}")
-    private Usuario usuario;
+    Usuario usuario;
 
     @Column(nullable = false, length = 100)
     @NotBlank(message = "{painelSolar.nome.notBlank}")
     @Size(max = 100, message = "{painelSolar.nome.size}")
-    private String nome;
+    String nome;
 
     @Column(nullable = false)
     @Pattern(regexp = "A|I", message = "{painelSolar.status.invalid}") // A (Ativo) ou I (Inativo)
-    private char status;
+    char status;
 
     @Column(nullable = false, length = 100)
     @NotBlank(message = "{painelSolar.localizacao.notBlank}")
     @Size(max = 100, message = "{painelSolar.localizacao.size}")
-    private String localizacao;
+    String localizacao;
 
     @Column(nullable = false)
     @NotNull(message = "{painelSolar.capacidadeProducao.notNull}")
-    private Double capacidadeProducao;
+    Double capacidadeProducao;
 
     @OneToMany(mappedBy = "painelSolar")
-    private List<EficienciaPainel> eficiencias;
+    List<EficienciaPainel> eficiencias;
 
     @OneToMany(mappedBy = "painelSolar")
-    private List<Sensor> sensores;
+    List<Sensor> sensores;
 
     @OneToMany(mappedBy = "painelSolar")
-    private List<RelatorioDesempenho> relatorios;
+    List<RelatorioDesempenho> relatorios;
 }

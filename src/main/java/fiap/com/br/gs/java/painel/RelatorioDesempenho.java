@@ -13,20 +13,20 @@ public class RelatorioDesempenho {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
     @ManyToOne
     @JoinColumn(name = "idPainelSolar", nullable = false)
-    private PainelSolar painelSolar;
+     PainelSolar painelSolar;
 
     @Column(nullable = false, precision = 5, scale = 2)
-    private Double eficienciaMedia;
+    Double eficienciaMedia;
 
     @Column(nullable = false)
-    private Double horasProducao;
+    Double horasProducao;
 
     @Column(length = 250)
-    private String analiseProblemas;
+    String analiseProblemas;
 
 
 }

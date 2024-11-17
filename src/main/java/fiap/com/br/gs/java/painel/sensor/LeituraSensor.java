@@ -1,6 +1,8 @@
 package fiap.com.br.gs.java.painel.sensor;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,22 +10,27 @@ import java.util.Date;
 
 @Entity
 @Data
+@Cacheable
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "T_SOSE_LeituraSensor")
 public class LeituraSensor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
     @Column(nullable = false)
-    private Date dataLeitura;
+    @NotNull(message = "{leituraSensor.dataLeitura.notNull}")
+    @Temporal(TemporalType.TIMESTAMP)
+    Date dataLeitura;
 
     @Column(nullable = false)
-    private Double valorLeitura;
+    @NotNull(message = "{leituraSensor.valorLeitura.notNull}")
+    @DecimalMin(value = "0.0", inclusive = false, message = "{leituraSensor.valorLeitura.min}")
+    Double valorLeitura;
 
     @Column(length = 200)
-    private String descricao;
-
-
+    @Size(max = 200, message = "{leituraSensor.descricao.size}")
+    String descricao;
 }

@@ -2,31 +2,35 @@ package fiap.com.br.gs.java.usuario.notificacao;
 
 import fiap.com.br.gs.java.usuario.Usuario;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 @Entity
 @Data
 @Cacheable
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "T_SOSE_Notificacao")
 public class Notificacao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
     @Column(columnDefinition = "CLOB")
-    private String mensagem;
+    String mensagem;
 
     @Temporal(TemporalType.DATE)
-    private Date dataEnvio;
+   Date dataEnvio;
 
     @ManyToOne
     @JoinColumn(name = "idTipoNotificacao", referencedColumnName = "id")
-    private TipoNotificacao tipoNotificacao;
+     TipoNotificacao tipoNotificacao;
 
     @ManyToOne
     @JoinColumn(name = "idUsuario", referencedColumnName = "id")
-    private Usuario usuario;
+    Usuario usuario;
 }

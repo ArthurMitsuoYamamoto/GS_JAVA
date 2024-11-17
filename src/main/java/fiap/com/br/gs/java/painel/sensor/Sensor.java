@@ -2,6 +2,8 @@ package fiap.com.br.gs.java.painel.sensor;
 
 import fiap.com.br.gs.java.painel.PainelSolar;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,26 +11,31 @@ import java.util.List;
 
 @Entity
 @Data
+@Cacheable
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "T_SOSE_Sensor")
 public class Sensor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
     @ManyToOne
     @JoinColumn(name = "idPainelSolar", nullable = false)
-    private PainelSolar painelSolar;
+    @NotNull(message = "{sensor.painelSolar.notNull}")
+    PainelSolar painelSolar;
 
     @ManyToOne
     @JoinColumn(name = "idTipoSensor", nullable = false)
-    private TipoSensor tipoSensor;
+    @NotNull(message = "{sensor.tipoSensor.notNull}")
+    TipoSensor tipoSensor;
 
     @ManyToOne
     @JoinColumn(name = "idUnidadeMedida", nullable = false)
-    private UnidadeMedida unidadeMedida;
+    @NotNull(message = "{sensor.unidadeMedida.notNull}")
+    UnidadeMedida unidadeMedida;
 
     @OneToMany(mappedBy = "sensor")
-    private List<LeituraSensor> leituras;
+    List<LeituraSensor> leituras;
 }

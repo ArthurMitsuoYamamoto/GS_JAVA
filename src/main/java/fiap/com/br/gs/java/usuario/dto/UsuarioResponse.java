@@ -1,13 +1,12 @@
-package fiap.com.br.gs.java.painel.dto;
+package fiap.com.br.gs.java.usuario.dto;
 import fiap.com.br.gs.java.usuario.Usuario;
-
-import java.time.LocalDateTime;
 
 public record UsuarioResponse(
         Long id,
         String nome,
         String email,
         String senha
+
 
 
 ) {

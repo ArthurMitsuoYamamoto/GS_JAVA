@@ -23,26 +23,26 @@ import java.util.ArrayList;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
     @Column(nullable = false, length = 100)
-    private String nome;
+    String nome;
 
     @Column(nullable = false, length = 100)
     @Email
-    private String email;
+    String email;
 
     @Column(nullable = false)
-    private String senha;
+    String senha;
 
     @Column(name = "DataCadastro")
-    private LocalDateTime dataCadastro;
+    LocalDateTime dataCadastro;
 
     @Column(nullable = false)
-    private char status;
+    char status;
 
     @OneToMany(mappedBy = "usuario")
-    private List<PainelSolar> paineis = new ArrayList<>();  // Inicializado para evitar NullPointerException
+    List<PainelSolar> paineis = new ArrayList<>();  // Inicializado para evitar NullPointerException
 
     @ManyToMany
     @JoinTable(
@@ -50,6 +50,6 @@ public class Usuario {
             joinColumns = @JoinColumn(name = "idUsuario"),
             inverseJoinColumns = @JoinColumn(name = "idTipoUsuario")
     )
-    private List<TipoUsuario> tipoUsuario = new ArrayList<>();  // Inicializado para evitar NullPointerException
+    List<TipoUsuario> tipoUsuario = new ArrayList<>();  // Inicializado para evitar NullPointerException
 
 }
