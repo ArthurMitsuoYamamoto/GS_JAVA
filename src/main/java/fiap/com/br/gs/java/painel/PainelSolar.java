@@ -2,6 +2,7 @@ package fiap.com.br.gs.java.painel;
 
 import fiap.com.br.gs.java.painel.sensor.Sensor;
 import fiap.com.br.gs.java.usuario.Usuario;
+import fiap.com.br.gs.java.validation.StatusPainel;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -35,7 +36,7 @@ public class PainelSolar {
     String nome;
 
     @Column(nullable = false)
-    @Pattern(regexp = "A|I", message = "{painelSolar.status.invalid}") // A (Ativo) ou I (Inativo)
+    @StatusPainel
     char status;
 
     @Column(nullable = false, length = 100)
