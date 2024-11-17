@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -23,7 +23,7 @@ public class LeituraSensor {
     @Column(nullable = false)
     @NotNull(message = "{leituraSensor.dataLeitura.notNull}")
     @Temporal(TemporalType.TIMESTAMP)
-    Date dataLeitura;
+    LocalDateTime dataLeitura;
 
     @Column(nullable = false)
     @NotNull(message = "{leituraSensor.valorLeitura.notNull}")
