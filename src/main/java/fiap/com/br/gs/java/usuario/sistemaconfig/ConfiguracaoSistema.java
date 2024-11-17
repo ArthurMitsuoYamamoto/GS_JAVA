@@ -2,6 +2,7 @@ package fiap.com.br.gs.java.usuario.sistemaconfig;
 
 import fiap.com.br.gs.java.usuario.Usuario;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,14 +21,16 @@ public class ConfiguracaoSistema {
 
     @OneToOne
     @JoinColumn(name = "idUsuario", referencedColumnName = "id", nullable = false)
+    @NotNull(message = "{configuracaoSistema.usuario.notNull}")
     Usuario usuario;
 
     @Column(name = "LimiteEficiencia", nullable = false)
+    @NotNull(message = "{configuracaoSistema.limiteEficiencia.notNull}")
+    @Min(value = 0, message = "{configuracaoSistema.limiteEficiencia.min}")
     Integer limiteEficiencia;
 
-
-
     @Column(name = "FrequenciaAtualizacao", nullable = false)
+    @NotNull(message = "{configuracaoSistema.frequenciaAtualizacao.notNull}")
+    @Min(value = 1, message = "{configuracaoSistema.frequenciaAtualizacao.min}")
     Integer frequenciaAtualizacao;
-
 }

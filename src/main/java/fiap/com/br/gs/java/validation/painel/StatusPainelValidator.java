@@ -1,4 +1,4 @@
-package fiap.com.br.gs.java.validation;
+package fiap.com.br.gs.java.validation.painel;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 

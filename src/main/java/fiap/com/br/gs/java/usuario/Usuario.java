@@ -1,7 +1,8 @@
 package fiap.com.br.gs.java.usuario;
 
 import fiap.com.br.gs.java.painel.PainelSolar;
-import fiap.com.br.gs.java.usuario.tipo.TipoUsuario;
+import fiap.com.br.gs.java.usuario.tipo.TipoUsuarioCliente;
+import fiap.com.br.gs.java.validation.usuario.status.TipoStatusUsuario;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
@@ -39,6 +40,7 @@ public class Usuario {
     LocalDateTime dataCadastro;
 
     @Column(nullable = false)
+    @TipoStatusUsuario
     char status;
 
     @OneToMany(mappedBy = "usuario")
@@ -50,6 +52,6 @@ public class Usuario {
             joinColumns = @JoinColumn(name = "idUsuario"),
             inverseJoinColumns = @JoinColumn(name = "idTipoUsuario")
     )
-    List<TipoUsuario> tipoUsuario = new ArrayList<>();  // Inicializado para evitar NullPointerException
+    List<TipoUsuarioCliente> tipoUsuarioClientes = new ArrayList<>();  // Inicializado para evitar NullPointerException
 
 }

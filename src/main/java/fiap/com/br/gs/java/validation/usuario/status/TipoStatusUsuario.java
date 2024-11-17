@@ -1,4 +1,4 @@
-package fiap.com.br.gs.java.validation;
+package fiap.com.br.gs.java.validation.usuario.status;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -9,10 +9,10 @@ import jakarta.validation.Payload;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = StatusPainelValidator.class)
-public @interface StatusPainel {
+@Constraint(validatedBy = TipoStatusUsuarioValidator.class)
+public @interface TipoStatusUsuario {
 
-    String message() default "{painelSolar.status}";
+    String message() default "{usuario.status}";
 
     Class<?>[] groups() default {};
 

@@ -2,7 +2,7 @@ package fiap.com.br.gs.java.painel;
 
 import fiap.com.br.gs.java.painel.sensor.Sensor;
 import fiap.com.br.gs.java.usuario.Usuario;
-import fiap.com.br.gs.java.validation.StatusPainel;
+import fiap.com.br.gs.java.validation.painel.StatusPainel;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
