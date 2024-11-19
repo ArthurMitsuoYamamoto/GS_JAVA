@@ -6,6 +6,6 @@ import jakarta.validation.ConstraintValidatorContext;
 public class TipoUsuarioValidator implements ConstraintValidator<TipoUsuario, String> {
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        return value.equals("ADM") || value.equals("CLIENTE");
+        return value.equals("Administrador") || value.equals("Usuário comum");
     }
 }

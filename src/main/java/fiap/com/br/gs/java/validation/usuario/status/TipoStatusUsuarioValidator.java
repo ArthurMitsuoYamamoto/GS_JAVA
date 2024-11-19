@@ -6,6 +6,6 @@ import jakarta.validation.ConstraintValidatorContext;
 public class TipoStatusUsuarioValidator implements ConstraintValidator<TipoStatusUsuario, String> {
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        return value.equals("ATIVO") || value.equals("INATIVO");
+        return value.equals("A") || value.equals("I");
     }
 }

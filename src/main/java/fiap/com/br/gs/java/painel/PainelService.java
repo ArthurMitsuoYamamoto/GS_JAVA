@@ -1,6 +1,6 @@
 package fiap.com.br.gs.java.painel;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -8,10 +8,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class PainelService {
 
-    @Autowired
-    private PainelRepository painelRepository;
+    private final PainelRepository painelRepository;
+
+    public PainelService(PainelRepository painelRepository) {
+        this.painelRepository = painelRepository;
+    }
 
     public List<PainelSolar> findAll() {
         return painelRepository.findAll();
@@ -44,5 +48,24 @@ public class PainelService {
 
     public void deleteById(Long id) {
         painelRepository.deleteById(id);
+    }
+
+    // Método para buscar painel solar por nome
+    public PainelSolar findPainel(String nome) {
+        return (PainelSolar) painelRepository.findByNome(nome)
+                .orElseThrow(() -> new RuntimeException("Painel Solar não encontrado com o nome: " + nome));
+    }
+
+    // Método para cadastrar painel solar
+    public PainelSolar cadastrarPainelSolar(String nome) {
+        log.info("Cadastrando painel solar com nome: {}", nome);
+
+        // Construção do objeto PainelSolar utilizando o padrão Builder
+        PainelSolar novoPainelSolar = PainelSolar.builder()
+                .nome(nome)                      // Nome fornecido
+                .build();
+
+        // Salvando o painel no repositório
+        return painelRepository.save(novoPainelSolar);
     }
 }

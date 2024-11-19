@@ -86,3 +86,49 @@ CREATE TABLE T_SOSE_Auditoria (
                                   Usuario VARCHAR2(100),
                                   DataAlteracao DATE DEFAULT SYSDATE
 );
+
+
+---IA---->>>
+
+-- Criação da tabela de usuários
+CREATE TABLE T_SOSE_IA_Usuario (
+                                Id NUMBER(11) PRIMARY KEY,
+                                Nome VARCHAR2(100) NOT NULL,
+                                Email VARCHAR2(100) NOT NULL UNIQUE,
+                                Senha VARCHAR2(255) NOT NULL,
+                                DataCadastro DATE DEFAULT SYSDATE NOT NULL,
+                                Status CHAR(1) DEFAULT 'A' CHECK (Status IN ('A', 'I')) -- Ativo ou Inativo
+);
+
+-- Criação da tabela de painéis solares
+CREATE TABLE T_SOSE_IA_PainelSolar (
+                                    Id NUMBER(11) PRIMARY KEY,
+                                    Nome VARCHAR2(100) NOT NULL,
+                                    IdUsuario NUMBER(11) NOT NULL,
+                                    DataCadastro DATE DEFAULT SYSDATE NOT NULL,
+                                    Status CHAR(1) DEFAULT 'A' CHECK (Status IN ('A', 'I')), -- Ativo ou Inativo
+                                    FOREIGN KEY (IdUsuario) REFERENCES T_SOSE_IA_Usuario(Id)
+);
+
+-- Criação da tabela de logs de interações (opcional para rastreamento)
+CREATE TABLE T_SOSE_LogInteracao (
+                                     Id NUMBER(11) PRIMARY KEY,
+                                     IdUsuario NUMBER(11),
+                                     TipoOperacao VARCHAR2(50) NOT NULL, -- Ex: "findUsuario", "CadastrarPainelSolar"
+                                     DadosEntrada VARCHAR2(500), -- JSON ou valores relacionados à entrada
+                                     Resultado VARCHAR2(1000), -- JSON ou resposta da operação
+                                     DataInteracao DATE DEFAULT SYSDATE NOT NULL,
+                                     FOREIGN KEY (IdUsuario) REFERENCES T_SOSE_IA_Usuario(Id)
+);
+
+-- Inserção de valores iniciais na tabela de usuários
+INSERT INTO T_SOSE_IA_Usuario (Id, Nome, Email, Senha, Status)
+VALUES (1, 'Admin', 'admin@sose.com', '123456', 'A');
+
+INSERT INTO T_SOSE_IA_Usuario (Id, Nome, Email, Senha, Status)
+VALUES (2, 'User', 'user@sose.com', 'senha123', 'A');
+
+-- Inserção de valores iniciais na tabela de painéis solares
+INSERT INTO T_SOSE_IA_PainelSolar (Id, Nome, IdUsuario, Status)
+VALUES (1, 'Painel Solar Principal', 2, 'A');
+

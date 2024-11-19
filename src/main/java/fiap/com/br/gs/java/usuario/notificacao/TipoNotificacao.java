@@ -1,7 +1,6 @@
 package fiap.com.br.gs.java.usuario.notificacao;
 
 import fiap.com.br.gs.java.validation.usuario.TipoUsuario;
-import fiap.com.br.gs.java.validation.usuario.notificacao.TipoNotificacaoUsuario;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -24,8 +23,8 @@ public class TipoNotificacao {
 
     @Column(nullable = false, length = 50)
     @NotBlank(message = "{tipoNotificacao.tipoUsuario.notBlank}")
-    @TipoNotificacaoUsuario
-    String tipoUsuario;
+    @Enumerated(EnumType.STRING)
+    StatusNotificacao Status;
 
 
     @Column(nullable = false, length = 50)
