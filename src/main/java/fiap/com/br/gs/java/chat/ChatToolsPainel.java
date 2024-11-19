@@ -23,7 +23,7 @@ public class ChatToolsPainel {
     }
 
     @Bean
-    @Description("Busca um usuário por nome")
+    @Description("Busca um painel pelo nome")
     public Function<PainelRequest, PainelSolar> findPainel(){
         return request -> PainelService.findPainel(request.nome);
     }
