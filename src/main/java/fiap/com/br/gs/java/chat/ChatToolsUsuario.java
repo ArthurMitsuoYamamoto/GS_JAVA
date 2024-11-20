@@ -1,9 +1,8 @@
 package fiap.com.br.gs.java.chat;
 
-import fiap.com.br.gs.java.painel.PainelSolar;
+
 import fiap.com.br.gs.java.usuario.Usuario;
 import fiap.com.br.gs.java.usuario.UsuarioService;
-import jakarta.validation.constraints.Email;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Description;

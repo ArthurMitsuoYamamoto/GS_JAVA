@@ -1,7 +1,6 @@
 package fiap.com.br.gs.java.usuario.dto;
 
 import fiap.com.br.gs.java.usuario.Usuario;
-
 import java.time.LocalDateTime;
 
 public record UsuarioFormRequest(
