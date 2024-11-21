@@ -34,7 +34,7 @@ public class Notificacao {
     Date dataEnvio;
 
     @ManyToOne
-    @JoinColumn(name = "IdTipoNotificacao", referencedColumnName = "id")
+    @JoinColumn(name = "idTipoNotificacao", referencedColumnName = "id")
     @NotNull(message = "{notificacao.tipoNotificacao.notNull}")
 
     TipoNotificacao tipoNotificacao;
@@ -42,5 +42,6 @@ public class Notificacao {
     @ManyToOne
     @JoinColumn(name = "idUsuario", referencedColumnName = "id")
     @NotNull(message = "{notificacao.usuario.notNull}")
+
     Usuario usuario;
 }

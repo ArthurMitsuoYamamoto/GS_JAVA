@@ -1,7 +1,7 @@
 package br.com.fiap.gs_java.usuario;
 
 import br.com.fiap.gs_java.painel.PainelSolar;
-import br.com.fiap.gs_java.usuario.tipo.TipoUsuarioCliente;
+import br.com.fiap.gs_java.usuario.tipo.TipoUsuario;
 import br.com.fiap.gs_java.validation.usuario.status.TipoStatusUsuario;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -51,10 +51,10 @@ public class Usuario {
     @ManyToMany
     @JoinTable(
             name = "T_SOSE_Usuario_TipoUsuario",
-            joinColumns = @JoinColumn(name = "idUsuario"),
-            inverseJoinColumns = @JoinColumn(name = "idTipoUsuario")
+            joinColumns = @JoinColumn(name = "idUsuario", referencedColumnName = "id", insertable = false, updatable = false),
+            inverseJoinColumns = @JoinColumn(name = "idTipoUsuario", referencedColumnName = "id", insertable = false, updatable = false)
     )
-    List<TipoUsuarioCliente> tipoUsuarioClientes = new ArrayList<>();  // Inicializado para evitar NullPointerException
+    List<TipoUsuario> tipoUsuarios = new ArrayList<>();  // Inicializado para evitar NullPointerException
 
 
 }

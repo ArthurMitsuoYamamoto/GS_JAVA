@@ -1,19 +1,18 @@
-# Nome da aplicaÁ„o
+# Nome da aplica√ß√£o
 spring:
   application:
     name: GS_JAVA_SOLAR_SENSE
 
 # Banco de dados
 spring.datasource:
-  # Banco de dados tempor·rio
-  url: jdbc:mysql://localhost:3306/gs_java
-  username: root
-  password: admin
-  driver-class-name: com.mysql.cj.jdbc.Driver
+  url: jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL # Substitua `localhost`, `1521` e `xe` pelos valores corretos para seu ambiente
+  username: rm551279
+  password: 230704
+  driver-class-name: oracle.jdbc.OracleDriver
 
 # JPA / Hibernate
 spring.jpa:
-  database-platform: org.hibernate.dialect.MySQLDialect
+  # database-platform: org.hibernate.dialect.OracleDialect # Dialeto espec√≠fico para Oracle
   hibernate:
     ddl-auto: update
   show-sql: true
@@ -21,7 +20,7 @@ spring.jpa:
     hibernate:
       format_sql: true
 
-# ProduÁ„o (comentado)
+# Produ√ß√£o (comentado)
 # spring:
 #   jpa:
 #     hibernate:

@@ -1,0 +1,32 @@
+# Nome da aplicação
+spring:
+  application:
+    name: GS_JAVA_SOLAR_SENSE
+
+# Banco de dados
+spring.datasource:
+  # Banco de dados temporário
+  url: jdbc:mysql://localhost:3306/gs_java
+  username: root
+  password: admin
+  driver-class-name: com.mysql.cj.jdbc.Driver
+
+# JPA / Hibernate
+spring.jpa:
+  database-platform: org.hibernate.dialect.MySQLDialect
+  hibernate:
+    ddl-auto: update
+  show-sql: true
+  properties:
+    hibernate:
+      format_sql: true
+
+# Produção (comentado)
+# spring:
+#   jpa:
+#     hibernate:
+#       ddl-auto: validate
+#     show-sql: false
+#     properties:
+#       hibernate:
+#         format_sql: false
