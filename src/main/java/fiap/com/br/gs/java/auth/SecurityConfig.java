@@ -15,12 +15,11 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain config(HttpSecurity http, AuthorizationFilter authorizationFilter) throws Exception {
         http.csrf(csrf -> csrf.disable());
-        http.authorizeHttpRequests(auth -> auth
+        http.authorizeHttpRequests(auth -> auth.anyRequest().authenticated()
                 .requestMatchers(HttpMethod.POST, "/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/usuarios").permitAll()
                 .requestMatchers(HttpMethod.POST, "/paineis").permitAll()
                 .requestMatchers(HttpMethod.POST, "/notificacoes").permitAll()
-                .anyRequest().authenticated()
         );
         http.addFilterBefore(authorizationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
@@ -32,3 +31,7 @@ public class SecurityConfig {
     }
 
 }
+
+
+
+

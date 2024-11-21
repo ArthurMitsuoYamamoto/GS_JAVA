@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
 
 @Entity
 @Data
@@ -29,12 +30,13 @@ public class Usuario {
     @Column(nullable = false, length = 100)
     String nome;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 100, unique = true)
     @Email
     String email;
 
     @Column(nullable = false)
     String senha;
+
 
     @Column(name = "DataCadastro")
     LocalDateTime dataCadastro;
@@ -54,4 +56,7 @@ public class Usuario {
     )
     List<TipoUsuarioCliente> tipoUsuarioClientes = new ArrayList<>();  // Inicializado para evitar NullPointerException
 
+
 }
+
+
