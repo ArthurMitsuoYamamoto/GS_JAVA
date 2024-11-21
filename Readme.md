@@ -117,13 +117,13 @@ A **SolarSense API** é uma aplicação para gerenciamento de sistemas de energi
 ### **Passos para Configurar o Projeto**
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/sua-organizacao/solar-sense.git
+   git clone https://github.com/ArthurMitsuoYamamoto/GS_JAVA.git
    ```
 2. Acesse o diretório do projeto:
    ```bash
    cd solar-sense
    ```
-3. Configure o `application.properties` com suas credenciais e detalhes de banco de dados, se necessário.
+3. Configure o `application.properties` com suas credenciais e detalhes de banco de dados, se necessário. Possibilidade de usar o mysql caso deseje.
 
 4. Execute o projeto:
    ```bash
@@ -144,7 +144,7 @@ Utilize o **Spring Boot Actuator** para acessar endpoints de monitoramento como 
 ## 📢 **Contato**
 Para dúvidas ou contribuições, entre em contato com a equipe de desenvolvimento:  
 **Email:** support@solarsense.com  
-**GitHub:** [SolarSense API](https://github.com/sua-organizacao/solar-sense)
+**GitHub:** [SolarSense API](https://github.com/ArthurMitsuoYamamoto/GS_JAVA.git)
 
 --- 
 
