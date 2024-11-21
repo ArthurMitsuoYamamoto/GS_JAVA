@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -28,9 +29,11 @@ public class LeituraSensor {
     @Column(nullable = false)
     @NotNull(message = "{leituraSensor.valorLeitura.notNull}")
     @DecimalMin(value = "0.0", inclusive = false, message = "{leituraSensor.valorLeitura.min}")
-    Double valorLeitura;
+    BigDecimal valorLeitura;
 
     @Column(length = 200)
     @Size(max = 200, message = "{leituraSensor.descricao.size}")
     String descricao;
+
+
 }

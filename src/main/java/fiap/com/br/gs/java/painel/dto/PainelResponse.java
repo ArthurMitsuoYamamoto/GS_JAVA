@@ -3,11 +3,13 @@ package fiap.com.br.gs.java.painel.dto;
 import fiap.com.br.gs.java.painel.PainelSolar;
 import fiap.com.br.gs.java.usuario.Usuario;
 
+import java.math.BigDecimal;
+
 public record PainelResponse(
         Long id,
         String nome,
         String localizacao,
-        Double capacidadeProducao,
+        BigDecimal capacidadeProducao,
         Usuario usuario,
         char status
 ) {

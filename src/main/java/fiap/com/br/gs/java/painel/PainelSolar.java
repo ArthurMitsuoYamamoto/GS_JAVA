@@ -10,6 +10,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -46,7 +47,7 @@ public class PainelSolar {
 
     @Column(nullable = false)
     @NotNull(message = "{painelSolar.capacidadeProducao.notNull}")
-    Double capacidadeProducao;
+    BigDecimal capacidadeProducao;
 
     @OneToMany(mappedBy = "painelSolar")
     List<EficienciaPainel> eficiencias;

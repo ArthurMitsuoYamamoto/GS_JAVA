@@ -25,7 +25,7 @@ public class EficienciaPainel {
     @NotNull(message = "{eficienciaPainel.painelSolar.notNull}")
     PainelSolar painelSolar;
 
-    @Column(nullable = false, precision = 5, scale = 2)
+    @Column(nullable = false)
     @NotNull(message = "{eficienciaPainel.eficiencia.notNull}")
     @DecimalMin(value = "0.0", inclusive = false, message = "{eficienciaPainel.eficiencia.min}")
     Double eficiencia;

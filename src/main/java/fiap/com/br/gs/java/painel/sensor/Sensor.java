@@ -38,6 +38,6 @@ public class Sensor {
     @NotNull(message = "{sensor.unidadeMedida.notNull}")
     UnidadeMedida unidadeMedida;
 
-    @OneToMany(mappedBy = "sensor")
+    @OneToMany(mappedBy = "id")
     List<LeituraSensor> leituras;
 }

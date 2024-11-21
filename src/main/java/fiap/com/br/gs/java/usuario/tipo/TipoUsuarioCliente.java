@@ -34,10 +34,10 @@ public class TipoUsuarioCliente {
     private String descricao;
 
     // Relacionamento muitos-para-muitos com Usuario
-    @ManyToMany(mappedBy = "tipoUsuario")
+    @ManyToMany(mappedBy = "id")
     private List<Usuario> usuarios;
 
     // Relacionamento um-para-muitos com Notificacao
-    @OneToMany(mappedBy = "tipoUsuario")
+    @OneToMany(mappedBy = "id")
     private List<Notificacao> notificacoes;
 }
