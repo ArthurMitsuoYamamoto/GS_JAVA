@@ -22,7 +22,7 @@ spring:
 
 # Configuração do JWT
 jwt:
-  secret: "3F47v#9s8hX$U2z6AqLw9z!bXc7Pq5C@kZl3Jd6mR"
+  secret: "${JWT_SECRET}"
 
 
 # Log IA
