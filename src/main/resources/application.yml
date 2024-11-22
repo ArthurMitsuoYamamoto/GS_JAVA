@@ -24,10 +24,6 @@ spring:
 jwt:
   secret: "3F47v#9s8hX$U2z6AqLw9z!bXc7Pq5C@kZl3Jd6mR"
 
-  # Configuração da OpenAI
-  #ai:
-    #openai:
-     # api-key: "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"
 
 # Log IA
 logging:
