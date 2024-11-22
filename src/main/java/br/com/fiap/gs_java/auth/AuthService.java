@@ -1,9 +1,10 @@
 package br.com.fiap.gs_java.auth;
 
+import br.com.fiap.gs_java.exception.EmailNotFoundException;
+import br.com.fiap.gs_java.exception.InvalidPasswordException;
 import br.com.fiap.gs_java.usuario.UsuarioRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 @Service
 public class AuthService {
 
@@ -18,11 +19,12 @@ public class AuthService {
     }
 
     public Token login(Credentials credentials) {
-        var user = usuarioRepository.findByEmail(credentials.email())
-                .orElseThrow(() -> new RuntimeException("Access Denied"));
+        var usuario = usuarioRepository.findByEmail(credentials.email())
+                .orElseThrow(() -> new EmailNotFoundException(credentials.email()));
 
-        if (!passwordEncoder.matches(credentials.senha(), user.getSenha())) {
-            throw new RuntimeException("Access Denied");
+
+        if (!passwordEncoder.matches(credentials.senha(), usuario.getSenha())) {
+            throw new InvalidPasswordException();
         }
 
         return tokenService.createToken(credentials); // Gera o token usando o TokenService

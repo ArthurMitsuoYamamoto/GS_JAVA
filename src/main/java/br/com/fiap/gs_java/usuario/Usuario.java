@@ -3,8 +3,11 @@ package br.com.fiap.gs_java.usuario;
 import br.com.fiap.gs_java.painel.PainelSolar;
 import br.com.fiap.gs_java.usuario.tipo.TipoUsuario;
 import br.com.fiap.gs_java.validation.usuario.status.TipoStatusUsuario;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,20 +31,26 @@ public class Usuario {
     Long id;
 
     @Column(nullable = false, length = 100)
+    @NotBlank(message = "{nome.notBlank}")
+    @Size(max = 100, message = "{nome.size}")
     String nome;
 
     @Column(nullable = false, length = 100, unique = true)
-    @Email
+    @Email(message = "{email.email}")
+    @NotBlank(message = "{email.notBlank}")
     String email;
 
     @Column(nullable = false)
+    @NotBlank(message = "{senha.notBlank}")
     String senha;
 
 
     @Column(name = "DataCadastro")
+    @NotBlank(message = "{data.notBlank}")
     LocalDateTime dataCadastro;
 
     @Column(nullable = false)
+    @NotBlank(message = "{status.notBlank}")
     @TipoStatusUsuario
     char status;
 
