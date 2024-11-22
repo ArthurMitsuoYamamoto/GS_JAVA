@@ -26,7 +26,6 @@ import java.util.List;
 @Table(name = "T_SOSE_Usuario")
 public class Usuario {
     @Id
-    @Column(insertable = false, updatable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 

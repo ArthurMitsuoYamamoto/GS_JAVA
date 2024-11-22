@@ -21,14 +21,37 @@ spring:
         transaction.jta.platform: org.hibernate.transaction.JTATransactionFactory
 
 # Configuração do JWT
-jwt:
-  secret: "${JWT_SECRET}"
+  jwt:
+    secret: "${JWT_SECRET}"
 
 
 # Log IA
 logging:
-    level:
-      org.springframework.ai: DEBUG
+  level:
+    org.springframework.ai: DEBUG
+
+# Configuração do OpenAI
+
+  ai:
+    openai:
+      api-key: "${API_KEY}"
+
+# Monitoramento da API
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  level:
+    org.springframework.security: DEBUG
+
+# Configurações do Thinger.IO
+thinger:
+  io:
+    api:
+      token: "${THINGER_TOKEN}"
+      userId: "${THINGER_USER}"
+      deviceId: "${THINGER_DEVICE}"
 
 # Configurações de produção (desativadas)
 # spring:

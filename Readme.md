@@ -132,7 +132,7 @@ A **SolarSense API** é uma aplicação para gerenciamento de sistemas de energi
 
 ### **Acesso**
 - A aplicação estará disponível em: `http://localhost:8080`
-- Acesso ao console do H2 Database: `http://localhost:8080/h2-console`
+
 
 ---
 
