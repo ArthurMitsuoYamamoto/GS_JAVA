@@ -29,7 +29,7 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 100, columnDefinition = "varchar2(100 char) default 'VALOR_PADRAO'")
     @NotBlank(message = "{nome.notBlank}")
     @Size(max = 100, message = "{nome.size}")
     String nome;

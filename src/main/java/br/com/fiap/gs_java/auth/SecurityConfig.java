@@ -14,24 +14,28 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain config(HttpSecurity http, AuthorizationFilter authorizationFilter) throws Exception {
+        // Desativa o CSRF (não recomendado para produção sem outras proteções)
         http.csrf(csrf -> csrf.disable());
-        http.authorizeHttpRequests(auth -> auth.anyRequest().authenticated()
-                .requestMatchers(HttpMethod.POST, "/login").permitAll()
-                .requestMatchers(HttpMethod.POST, "/usuarios").permitAll()
-                .requestMatchers(HttpMethod.POST, "/paineis").permitAll()
-                .requestMatchers(HttpMethod.POST, "/notificacoes").permitAll()
+
+        // Configuração das permissões de acesso
+        http.authorizeHttpRequests(auth -> auth
+                .requestMatchers(HttpMethod.POST, "/login").permitAll() // Permite acesso ao login
+                .requestMatchers(HttpMethod.POST, "/usuarios").permitAll() // Permite criar usuários
+                .requestMatchers(HttpMethod.POST, "/paineis").permitAll() // Permite acessar paineis
+                .requestMatchers(HttpMethod.POST, "/notificacoes").permitAll() // Permite acessar notificações
+                .anyRequest().authenticated() // Qualquer outra requisição precisa de autenticação
         );
+
+        // Adiciona o filtro de autorização antes do filtro de autenticação padrão
         http.addFilterBefore(authorizationFilter, UsernamePasswordAuthenticationFilter.class);
+
+        // Retorna a configuração do filtro de segurança
         return http.build();
     }
 
+    // Configura o PasswordEncoder para a codificação de senhas
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 }
-
-
-
-

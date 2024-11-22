@@ -5,14 +5,16 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+
 
 import java.util.List;
 
@@ -22,44 +24,30 @@ import static org.springframework.http.HttpStatus.*;
 @RequestMapping("usuarios")
 @CacheConfig(cacheNames = "usuarios")
 @Slf4j
+@RequiredArgsConstructor  // Usando o Lombok para injeção de dependências
 @Tag(name = "Usuários", description = "Endpoints para gerenciar os usuários.")
 public class UsuarioController {
 
-    @Autowired
-    private UsuarioService usuarioService; // Injeção do serviço
-
-    @GetMapping
-    @Cacheable
-    @Operation(
-            summary = "Listar todos os usuários",
-            description = "Retorna uma lista contendo todos os usuários cadastrados no sistema."
-    )
-    @ApiResponses(
-            value = {
-                    @ApiResponse(responseCode = "200", description = "Lista de usuários retornada com sucesso.")
-            }
-    )
-    public List<Usuario> getAllUsuarios() {
-        log.info("Listando todos os usuários");
-        return usuarioService.findAll();  // Usando o serviço
-    }
+    private final UsuarioService usuarioService; // Usando o construtor do Lombok para injeção
 
     @GetMapping
     @Cacheable
     @Operation(
             summary = "Listar todos os usuários ou filtrar por nome",
-            description = "Retorna uma lista de todos os usuários cadastrados ou filtra os usuários pelo nome, caso o parâmetro 'nome' seja fornecido.",
-            responses = {
+            description = "Retorna uma lista de todos os usuários cadastrados ou filtra os usuários pelo nome, caso o parâmetro 'nome' seja fornecido."
+    )
+    @ApiResponses(
+            value = {
                     @ApiResponse(responseCode = "200", description = "Lista de usuários retornada com sucesso."),
                     @ApiResponse(responseCode = "400", description = "Erro nos parâmetros de entrada.")
             }
     )
-    public List<Usuario> findAll(@RequestParam(required = false) String nome) {
-        log.info("Listando usuários, filtro nome: {}", nome);
+    public List<Usuario> getAllUsuarios(@RequestParam(required = false) String nome) {
+        log.debug("Listando usuários com filtro: {}", nome);
         if (nome != null) {
-            return usuarioService.findByNome(nome);  // Usando o serviço
+            return usuarioService.findByNome(nome);  // Usando o serviço para filtrar por nome
         }
-        return usuarioService.findAll();  // Usando o serviço
+        return usuarioService.findAll();  // Retorna todos os usuários
     }
 
     @GetMapping("{id}")
@@ -74,15 +62,15 @@ public class UsuarioController {
             }
     )
     public ResponseEntity<Usuario> getUsuarioById(@PathVariable Long id) {
-        log.info("Buscando usuário com id {}", id);
+        log.debug("Buscando usuário com id {}", id);
         return usuarioService.findById(id)
                 .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.status(NOT_FOUND).build());  // Usando o serviço
+                .orElse(ResponseEntity.status(NOT_FOUND).build());  // Caso não encontre o usuário
     }
 
     @PostMapping
     @ResponseStatus(CREATED)
-    @CacheEvict(allEntries = true)
+    @CacheEvict(allEntries = true)  // Evita que o cache com usuários antigos seja usado
     @Operation(
             summary = "Criar um novo usuário",
             description = "Adiciona um novo usuário ao sistema."
@@ -94,12 +82,12 @@ public class UsuarioController {
             }
     )
     public Usuario createUsuario(@RequestBody @Valid Usuario usuario) {
-        log.info("Cadastrando novo usuário: {}", usuario);
-        return usuarioService.save(usuario);  // Usando o serviço
+        log.debug("Cadastrando novo usuário: {}", usuario);
+        return usuarioService.save(usuario);  // Chama o serviço para salvar o novo usuário
     }
 
     @PutMapping("{id}")
-    @CacheEvict(allEntries = true)
+    @CacheEvict(allEntries = true)  // Evita que o cache com usuários antigos seja usado
     @Operation(
             summary = "Atualizar usuário",
             description = "Atualiza as informações de um usuário específico pelo ID."
@@ -111,15 +99,15 @@ public class UsuarioController {
             }
     )
     public Usuario updateUsuario(@PathVariable Long id, @RequestBody @Valid Usuario usuario) {
-        log.info("Atualizando usuário com id {} para {}", id, usuario);
-        verificarSeUsuarioExiste(id);
+        log.debug("Atualizando usuário com id {} para {}", id, usuario);
+        verificarSeUsuarioExiste(id);  // Verifica se o usuário existe antes de atualizar
         usuario.setId(id);
-        return usuarioService.update(id, usuario);  // Usando o serviço
+        return usuarioService.update(id, usuario);  // Chama o serviço para atualizar o usuário
     }
 
     @DeleteMapping("{id}")
     @ResponseStatus(NO_CONTENT)
-    @CacheEvict(allEntries = true)
+    @CacheEvict(allEntries = true)  // Evita que o cache com usuários antigos seja usado
     @Operation(
             summary = "Excluir usuário",
             description = "Remove um usuário do sistema pelo ID fornecido."
@@ -131,9 +119,9 @@ public class UsuarioController {
             }
     )
     public void deleteUsuario(@PathVariable Long id) {
-        log.info("Apagando usuário com id {}", id);
-        verificarSeUsuarioExiste(id);
-        usuarioService.deleteById(id);  // Usando o serviço
+        log.debug("Apagando usuário com id {}", id);
+        verificarSeUsuarioExiste(id);  // Verifica se o usuário existe antes de excluir
+        usuarioService.deleteById(id);  // Chama o serviço para excluir o usuário
     }
 
     private void verificarSeUsuarioExiste(Long id) {
