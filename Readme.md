@@ -2,7 +2,7 @@
 
 ## 📋 **Descrição do Projeto**
 
-A **SolarSense API** é uma aplicação para gerenciamento de sistemas de energia solar, oferecendo funcionalidades como cadastro de usuários, painéis solares, sensores e leitura de dados para monitoramento e otimização do desempenho.
+A **SolarSense API** e uma aplicação para gerenciamento de sistemas de energia solar, oferecendo funcionalidades como cadastro de usuários, painéis solares, sensores e leitura de dados para monitoramento e otimização do desempenho.
 
 ---
 
