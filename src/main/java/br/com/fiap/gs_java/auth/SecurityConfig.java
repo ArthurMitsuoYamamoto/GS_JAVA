@@ -23,6 +23,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/usuarios").permitAll() // Permite criar usuários
                 .requestMatchers(HttpMethod.POST, "/paineis").permitAll() // Permite acessar paineis
                 .requestMatchers(HttpMethod.POST, "/notificacoes").permitAll() // Permite acessar notificações
+                .requestMatchers("/v3/api-docs/**", "/swagger-ui/**").permitAll()
                 .anyRequest().authenticated() // Qualquer outra requisição precisa de autenticação
         );
 
